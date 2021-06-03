@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="uxtc-user" />
+        <module name="uxtc-order" />
+        <module name="uxtc-admin" />
+        <module name="uxtc-user-feign-api" />
+        <module name="uxtc-order-feign-api" />
+        <module name="uxtc-common" />
+        <module name="uxtc-gateway" />
+        <module name="uxtc-auth" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-cloud-mall" target="1.8" />
+      <module name="uxtc-admin" target="1.8" />
+      <module name="uxtc-auth" target="1.8" />
+      <module name="uxtc-common" target="1.8" />
+      <module name="uxtc-gateway" target="1.8" />
+      <module name="uxtc-order" target="1.8" />
+      <module name="uxtc-order-api" target="1.8" />
+      <module name="uxtc-order-feign-api" target="1.8" />
+      <module name="uxtc-service" target="1.8" />
+      <module name="uxtc-service-api" target="1.8" />
+      <module name="uxtc-service-feign-api" target="1.8" />
+      <module name="uxtc-user" target="1.8" />
+      <module name="uxtc-user-api" target="1.8" />
+      <module name="uxtc-user-feign-api" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-cloud-mall" options="-parameters" />
+      <module name="uxtc-admin" options="-parameters" />
+      <module name="uxtc-auth" options="-parameters" />
+      <module name="uxtc-common" options="-parameters" />
+      <module name="uxtc-gateway" options="-parameters" />
+      <module name="uxtc-order" options="-parameters" />
+      <module name="uxtc-order-api" options="-parameters" />
+      <module name="uxtc-order-feign-api" options="-parameters" />
+      <module name="uxtc-service" options="-parameters" />
+      <module name="uxtc-service-api" options="-parameters" />
+      <module name="uxtc-service-feign-api" options="-parameters" />
+      <module name="uxtc-user" options="-parameters" />
+      <module name="uxtc-user-api" options="-parameters" />
+      <module name="uxtc-user-feign-api" options="-parameters" />
+    </option>
+  </component>
+</project>
