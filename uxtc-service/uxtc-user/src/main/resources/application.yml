@@ -1,0 +1,16 @@
+server:
+  port: 8402
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+feign:
+  okhttp:
+    enabled: true
+  hystrix:
+    enabled: true #在Feign中开启Hystrix
+
+ribbon:
+  ConnectTimeout: 3000 #服务请求连接超时时间（毫秒）
+  ReadTimeout: 3000 #服务请求处理超时时间（毫秒）
