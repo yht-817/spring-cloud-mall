@@ -24,6 +24,7 @@ import java.util.List;
 
 /**
  * 认证服务器配置
+ * <p>
  * Created by 鱼仔 on 2020/6/19.
  */
 @AllArgsConstructor
@@ -34,6 +35,9 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
     private final UserServiceImpl userDetailsService;
     private final AuthenticationManager authenticationManager;
+    /**
+     * 自定义jwt信息，配置里面自己想带的参数
+     */
     private final JwtTokenEnhancer jwtTokenEnhancer;
 
     @Override

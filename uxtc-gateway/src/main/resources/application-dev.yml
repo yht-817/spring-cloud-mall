@@ -15,6 +15,12 @@ spring:
             - Path=/uxtc-auth/**
           filters:
             - StripPrefix=1
+        - id: uxtc-user
+          uri: lb://uxtc-user
+          predicates:
+            - Path=/uxtc-user/**
+          filters:
+            - StripPrefix=1
   security:
     oauth2:
       resourceserver:
@@ -43,3 +49,4 @@ secure:
       - "/actuator/**"
       - "/uxtc-auth/oauth/token"
       - "/uxtc-auth/rsa/publicKey"
+      - "/uxtc-auth/getUserInfo/token"

@@ -22,7 +22,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import reactor.core.publisher.Mono;
 
 /**
- * 资源服务器配置
+ * 网管对安全配置策略配置，资源服务器配置
  *
  * @author 鱼仔
  */
@@ -30,10 +30,25 @@ import reactor.core.publisher.Mono;
 @Configuration
 @EnableWebFluxSecurity
 public class ResourceServerConfig {
+    /**
+     * 鉴权管理器，判断用户是否有权限访问
+     */
     private final AuthorizationManager authorizationManager;
+    /**
+     * 白名单路径
+     */
     private final IgnoreUrlsConfig ignoreUrlsConfig;
+    /**
+     * 自定义返回结果：没有权限访问时
+     */
     private final RestfulAccessDeniedHandler restfulAccessDeniedHandler;
+    /**
+     * 自定义返回结果：没有登录或token过期时
+     */
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    /**
+     * 对白名单路径，直接移除JWT请求头
+     */
     private final IgnoreUrlsRemoveJwtFilter ignoreUrlsRemoveJwtFilter;
 
     @Bean

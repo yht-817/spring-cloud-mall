@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限
- * Created by macro on 2020/6/19.
+ * Created by 鱼仔 on 2020/6/19.
  */
 @Component
 @Slf4j
@@ -49,10 +49,8 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
         URI uri = request.getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
-        //白名单路径直接放行
+        //白名单路径直接放行不进行鉴权处理
         List<String> ignoreUrls = ignoreUrlsConfig.getUrls();
-        log.error("白名单的路径：" + ignoreUrls.toString());
-        log.error("----------获取的路径：" + uri.getPath());
         for (String ignoreUrl : ignoreUrls) {
             if (pathMatcher.match(ignoreUrl, uri.getPath())) {
                 return Mono.just(new AuthorizationDecision(true));
@@ -62,30 +60,15 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         if (request.getMethod() == HttpMethod.OPTIONS) {
             return Mono.just(new AuthorizationDecision(true));
         }
-        //不同用户体系登录不允许互相访问
-        try {
-            String token = request.getHeaders().getFirst(AuthConstant.JWT_TOKEN_HEADER);
-            if (StrUtil.isEmpty(token)) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-            String realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
-            JWSObject jwsObject = JWSObject.parse(realToken);
-            String userStr = jwsObject.getPayload().toString();
-            UserDto userDto = JSONUtil.toBean(userStr, UserDto.class);
-            if (AuthConstant.ADMIN_CLIENT_ID.equals(userDto.getClientId()) && !pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-            if (AuthConstant.PORTAL_CLIENT_ID.equals(userDto.getClientId()) && pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-                return Mono.just(new AuthorizationDecision(false));
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return Mono.just(new AuthorizationDecision(false));
-        }
-        //非管理端路径直接放行
+        /**
+         * 根据不同的client_id的系统鉴别不同的权限放行，不同用户体系登录不允许互相访问
+         */
+        log.error("获取的路径数据" + uri.getPath());
         if (!pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
+            log.error("不是管理端");
             return Mono.just(new AuthorizationDecision(true));
         }
+        log.error("应该不得走这里了");
         //管理端路径需校验权限
         Map<Object, Object> resourceRolesMap = stringRedisTemplate.opsForHash().entries(AuthConstant.RESOURCE_ROLES_MAP_KEY);
         Iterator<Object> iterator = resourceRolesMap.keySet().iterator();

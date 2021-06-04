@@ -1,6 +1,5 @@
 package com.uxtc.auth.cloud.controller;
 
-import cn.hutool.system.UserInfo;
 import com.uxtc.auth.cloud.domain.Oauth2TokenDto;
 import com.uxtc.common.cloud.api.CommonResult;
 import com.uxtc.common.cloud.constant.AuthConstant;
@@ -12,7 +11,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Map;
 
@@ -46,10 +44,5 @@ public class AuthController {
                 .expiresIn(oAuth2AccessToken.getExpiresIn())
                 .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
         return CommonResult.success(oauth2TokenDto);
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    public CommonResult<Object> test(HttpServletRequest request) {
-        return CommonResult.success("成功");
     }
 }
