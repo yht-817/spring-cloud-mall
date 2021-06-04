@@ -20,8 +20,4 @@ mybatis:
   mapper-locations:
     - classpath:dao/*.xml
 
-logging:
-  level:
-    root: info
-
 

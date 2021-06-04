@@ -43,8 +43,3 @@ secure:
       - "/actuator/**"
       - "/uxtc-auth/oauth/token"
       - "/uxtc-auth/rsa/publicKey"
-
-
-logging:
-  level:
-    root: info
