@@ -16,6 +16,7 @@ spring:
     password:  # Redis服务器连接密码（默认为空）
     timeout: 300ms # 连接超时时间（毫秒）
 
+  #进行链路追踪配置https://repo1.maven.org/maven2/io/zipkin/java/zipkin-server/进行jar包下载直接运行Java -jar  zipkin-jar包
   zipkin:
     base-url: http://localhost:9411
   sleuth:
