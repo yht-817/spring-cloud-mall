@@ -47,5 +47,10 @@
             <groupId>com.uxtc.cloud</groupId>
             <artifactId>uxtc-user-feign-api</artifactId>
         </dependency>
+        <!--链路追踪插件-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
     </dependencies>
 </project>

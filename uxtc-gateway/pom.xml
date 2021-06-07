@@ -79,5 +79,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--链路追踪插件-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
     </dependencies>
 </project>
