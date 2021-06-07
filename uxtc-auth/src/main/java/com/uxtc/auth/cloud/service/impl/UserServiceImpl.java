@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class UserServiceImpl implements UserDetailsService {
 
+    @Autowired
     private IUserAdminClient iUserAdminClient;
 
     @Autowired
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserDetailsService {
         } else {
             userDto = iUserAdminClient.loadUserByUsername(Long.valueOf(userId));
         }
+        log.error("查询的用户数据：{}", userDto.toString());
         if (userDto == null) {
             throw new UsernameNotFoundException(MessageConstant.USERNAME_PASSWORD_ERROR);
         }

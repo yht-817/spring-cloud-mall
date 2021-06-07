@@ -3,6 +3,7 @@ package com.uxtc.user.cloud.controller;
 import com.uxtc.common.cloud.api.CommonResult;
 import com.uxtc.common.cloud.entity.UserDto;
 import com.uxtc.user.cloud.service.UserAdminService;
+import com.uxtc.userfg.cloud.user.IUserAdminClient;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -34,8 +35,10 @@ public class UserAdminController {
     @ApiOperation("根据用户ID查询当前的用户详情")
     @RequestMapping(value = "/loadUserByUsername", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<Object> loadUserByUsername(@RequestParam(value = "userId", defaultValue = "123456789012") Long userId) {
+    public UserDto loadUserByUsername(@RequestParam(value = "userId", defaultValue = "123456789012") Long userId) {
+        log.error("获取的参数：{}", userId);
         UserDto userDto = userAdminService.loadUserByUsername(userId);
-        return CommonResult.success(userDto);
+        log.error("查询数据开始:{}", userDto.toString());
+        return userDto;
     }
 }
