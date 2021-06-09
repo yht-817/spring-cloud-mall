@@ -8,8 +8,6 @@ management:
 feign:
   okhttp:
     enabled: true
-  hystrix:
-    enabled: true #在Feign中开启Hystrix熔断
 
 ribbon:
   ConnectTimeout: 3000 #服务请求连接超时时间（毫秒）

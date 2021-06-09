@@ -21,4 +21,7 @@ public interface IUserAdminClient {
      */
     @GetMapping("/user/loadUserByUsername")
     UserDto loadUserByUsername(@RequestParam Long userId);
+
+    @GetMapping("/user/addUmsMember")
+    int addUmsMember();
 }

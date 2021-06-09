@@ -51,4 +51,102 @@
         FROM ums_member
         WHERE member_level_id = #{userId}
     </select>
+
+    <insert id="addUmsMember" parameterType="com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo">
+        INSERT INTO ums_member_statistics_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="null != memberId and '' != memberId">
+                member_id,
+            </if>
+            <if test="null != consumeAmount and '' != consumeAmount">
+                consume_amount,
+            </if>
+            <if test="null != orderCount and '' != orderCount">
+                order_count,
+            </if>
+            <if test="null != couponCount and '' != couponCount">
+                coupon_count,
+            </if>
+            <if test="null != commentCount and '' != commentCount">
+                comment_count,
+            </if>
+            <if test="null != returnOrderCount and '' != returnOrderCount">
+                return_order_count,
+            </if>
+            <if test="null != loginCount and '' != loginCount">
+                login_count,
+            </if>
+            <if test="null != attendCount and '' != attendCount">
+                attend_count,
+            </if>
+            <if test="null != fansCount and '' != fansCount">
+                fans_count,
+            </if>
+            <if test="null != collectProductCount and '' != collectProductCount">
+                collect_product_count,
+            </if>
+            <if test="null != collectSubjectCount and '' != collectSubjectCount">
+                collect_subject_count,
+            </if>
+            <if test="null != collectTopicCount and '' != collectTopicCount">
+                collect_topic_count,
+            </if>
+            <if test="null != collectCommentCount and '' != collectCommentCount">
+                collect_comment_count,
+            </if>
+            <if test="null != inviteFriendCount and '' != inviteFriendCount">
+                invite_friend_count,
+            </if>
+            <if test="null != recentOrderTime">
+                recent_order_time
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="null != memberId and '' != memberId">
+                #{memberId},
+            </if>
+            <if test="null != consumeAmount and '' != consumeAmount">
+                #{consumeAmount},
+            </if>
+            <if test="null != orderCount and '' != orderCount">
+                #{orderCount},
+            </if>
+            <if test="null != couponCount and '' != couponCount">
+                #{couponCount},
+            </if>
+            <if test="null != commentCount and '' != commentCount">
+                #{commentCount},
+            </if>
+            <if test="null != returnOrderCount and '' != returnOrderCount">
+                #{returnOrderCount},
+            </if>
+            <if test="null != loginCount and '' != loginCount">
+                #{loginCount},
+            </if>
+            <if test="null != attendCount and '' != attendCount">
+                #{attendCount},
+            </if>
+            <if test="null != fansCount and '' != fansCount">
+                #{fansCount},
+            </if>
+            <if test="null != collectProductCount and '' != collectProductCount">
+                #{collectProductCount},
+            </if>
+            <if test="null != collectSubjectCount and '' != collectSubjectCount">
+                #{collectSubjectCount},
+            </if>
+            <if test="null != collectTopicCount and '' != collectTopicCount">
+                #{collectTopicCount},
+            </if>
+            <if test="null != collectCommentCount and '' != collectCommentCount">
+                #{collectCommentCount},
+            </if>
+            <if test="null != inviteFriendCount and '' != inviteFriendCount">
+                #{inviteFriendCount},
+            </if>
+            <if test="null != recentOrderTime">
+                #{recentOrderTime}
+            </if>
+        </trim>
+    </insert>
 </mapper>

@@ -21,6 +21,21 @@ spring:
     sampler:
       probability: 0.1 #设置Sleuth的抽样收集概率
 
+seata:
+  # 该属性需要与前面config.txt文件中的service.vgroupMapping后的值保持一致
+  tx-service-group: my_test_tx_group
+  config:
+    nacos:
+      namespace: 09117bf2-f71a-43c5-9a2a-9103882154e0
+      serverAddr: 172.24.108.245:8848
+      group: SEATA_GROUP # 这个值未生效, 在nacos中依然为DEFAULT_GROUP, 待检查原因
+  registry:
+    nacos:
+      application: seata-server # seata 在nacos中的服务名
+      serverAddr: 172.24.108.245:8848
+      group: SEATA_GROUP # 分组需和seate分组一致
+      namespace: 09117bf2-f71a-43c5-9a2a-9103882154e0
+
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml

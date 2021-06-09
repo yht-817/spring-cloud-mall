@@ -1,6 +1,7 @@
 package com.uxtc.user.cloud.mapper;
 
 import com.uxtc.user.cloud.entity.UmsMember;
+import com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,4 +13,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserAdminDao {
     UmsMember getUserDetails(@Param("userId") Long userId);
+
+    int addUmsMember(UmsMemberStatisticsInfo umsMemberStatisticsInfo);
 }

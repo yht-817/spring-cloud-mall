@@ -16,4 +16,9 @@ public class IUserAdminFallback implements IUserAdminClient {
         log.error("进行服务熔断了");
         return null;
     }
+
+    @Override
+    public int addUmsMember() {
+        return 0;
+    }
 }

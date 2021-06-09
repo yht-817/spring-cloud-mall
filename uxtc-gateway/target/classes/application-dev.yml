@@ -21,6 +21,12 @@ spring:
             - Path=/uxtc-user/**
           filters:
             - StripPrefix=1
+        - id: uxtc-order
+          uri: lb://uxtc-order
+          predicates:
+            - Path=/uxtc-order/**
+          filters:
+            - StripPrefix=1
   security:
     oauth2:
       resourceserver:

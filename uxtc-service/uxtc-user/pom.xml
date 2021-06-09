@@ -43,14 +43,26 @@
             <groupId>com.uxtc.cloud</groupId>
             <artifactId>uxtc-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.uxtc.cloud</groupId>
-            <artifactId>uxtc-user-feign-api</artifactId>
-        </dependency>
         <!--链路追踪插件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+        <!--集成分布式事务的-->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>

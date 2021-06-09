@@ -1,21 +1,13 @@
 package com.uxtc.user.cloud.controller;
 
-import com.uxtc.common.cloud.api.CommonResult;
 import com.uxtc.common.cloud.entity.UserDto;
 import com.uxtc.user.cloud.service.UserAdminService;
-import com.uxtc.userfg.cloud.user.IUserAdminClient;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.util.Map;
 
 /**
  * @author 鱼仔
@@ -40,5 +32,13 @@ public class UserAdminController {
         UserDto userDto = userAdminService.loadUserByUsername(userId);
         log.error("查询数据开始:{}", userDto.toString());
         return userDto;
+    }
+
+    @ApiOperation("插入会员统计信息列表")
+    @RequestMapping(value = "/addUmsMember", method = RequestMethod.GET)
+    @ResponseBody
+    public int addUmsMember() {
+        int add = userAdminService.addUmsMember();
+        return add;
     }
 }

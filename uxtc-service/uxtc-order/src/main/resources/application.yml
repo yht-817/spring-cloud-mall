@@ -1,5 +1,5 @@
 server:
-  port: 8402
+  port: 8403
 management:
   endpoints:
     web:

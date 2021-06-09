@@ -10,4 +10,6 @@ import feign.Param;
  */
 public interface UserAdminService {
     UserDto loadUserByUsername(Long userId);
+
+    int addUmsMember();
 }

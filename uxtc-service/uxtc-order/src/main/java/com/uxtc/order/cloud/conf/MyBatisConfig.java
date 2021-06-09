@@ -1,4 +1,4 @@
-package com.uxtc.user.cloud.conf;
+package com.uxtc.order.cloud.conf;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.uxtc.user.cloud.mapper"})
+@MapperScan({"com.uxtc.order.cloud.mapper"})
 public class MyBatisConfig {
 }
