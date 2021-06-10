@@ -35,9 +35,14 @@ seata:
       serverAddr: 172.24.108.245:8848
       group: SEATA_GROUP # 分组需和seate分组一致
       namespace: 09117bf2-f71a-43c5-9a2a-9103882154e0
-      
-mybatis:
-  mapper-locations:
-    - classpath:dao/*.xml
+
+#这是mybatis-plus的配置
+mybatis-plus:
+  - config-location: classpath:mybatis/mybatis-config.xml
+  - mapper-locations: classpath:mapper/*.xml
+#这个是mybatis的配置
+#mybatis:
+#  mapper-locations:
+#    - classpath:dao/*.xml
 
 

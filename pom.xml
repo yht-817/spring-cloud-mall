@@ -33,12 +33,8 @@
         <skipTests>true</skipTests>
         <docker.host>http://192.168.3.101:2375</docker.host>
         <docker.maven.plugin.version>1.2.2</docker.maven.plugin.version>
-        <pagehelper-starter.version>1.3.0</pagehelper-starter.version>
-        <pagehelper.version>5.2.0</pagehelper.version>
         <druid.version>1.1.23</druid.version>
         <hutool.version>5.4.0</hutool.version>
-        <mybatis-generator.version>1.4.0</mybatis-generator.version>
-        <mybatis.version>3.5.5</mybatis.version>
         <mysql-connector.version>8.0.20</mysql-connector.version>
         <jjwt.version>0.9.0</jjwt.version>
         <logstash-logback.version>5.3</logstash-logback.version>
@@ -48,6 +44,7 @@
         <nimbus-jose-jwt.version>8.16</nimbus-jose-jwt.version>
         <swagger.version>2.9.2</swagger.version>
         <core.version>2.0.1</core.version>
+        <mybatis-plus-boot-starter.version>3.4.3</mybatis-plus-boot-starter.version>
     </properties>
     <dependencies>
         <dependency>
@@ -99,23 +96,22 @@
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>${security-oauth2.version}</version>
             </dependency>
-            <!--MyBatis分页插件starter-->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper-starter.version}</version>
-            </dependency>
-            <!--MyBatis分页插件-->
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
             <!--集成druid连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <!--Mysql数据库驱动-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
             </dependency>
             <!--Hutool Java工具包-->
             <dependency>
@@ -133,24 +129,6 @@
                 <groupId>com.github.xiaoymin</groupId>
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
-            </dependency>
-            <!-- MyBatis 生成器 -->
-            <dependency>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-core</artifactId>
-                <version>${mybatis-generator.version}</version>
-            </dependency>
-            <!-- MyBatis-->
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <!--Mysql数据库驱动-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector.version}</version>
             </dependency>
             <!--JWT(Json Web Token)登录支持-->
             <dependency>

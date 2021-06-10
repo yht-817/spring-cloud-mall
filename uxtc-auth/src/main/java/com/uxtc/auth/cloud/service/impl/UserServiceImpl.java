@@ -2,9 +2,9 @@ package com.uxtc.auth.cloud.service.impl;
 
 import com.uxtc.auth.cloud.constant.MessageConstant;
 import com.uxtc.auth.cloud.domain.SecurityUser;
+import com.uxtc.auth.cloud.service.UserService;
 import com.uxtc.common.cloud.constant.AuthConstant;
 import com.uxtc.common.cloud.entity.UserDto;
-import com.uxtc.userfg.cloud.user.IUserAdminClient;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户管理业务类
- * Created by macro on 2020/6/19.
+ *
+ * @author 鱼仔
+ * @date 2020/6/19
  */
 @Component
 @AllArgsConstructor
@@ -29,29 +31,23 @@ import javax.servlet.http.HttpServletRequest;
 public class UserServiceImpl implements UserDetailsService {
 
     @Autowired
-    private IUserAdminClient iUserAdminClient;
+    private HttpServletRequest request;
 
     @Autowired
-    private HttpServletRequest request;
+    UserService userService;
 
     /**
      * 获取用户数据基本数据和权限数据
      *
-     * @param userId
+     * @param username 用户名
      * @return
-     * @throws UsernameNotFoundException
      */
     @Override
-    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) {
         String clientId = request.getParameter("client_id");
-        UserDto userDto;
-        // 判断用户系统
-        if (AuthConstant.ADMIN_CLIENT_ID.equals(clientId)) {
-            userDto = iUserAdminClient.loadUserByUsername(Long.valueOf(userId));
-        } else {
-            userDto = iUserAdminClient.loadUserByUsername(Long.valueOf(userId));
-        }
-        log.error("查询的用户数据：{}", userDto.toString());
+        log.error("获取的客户端id：" + clientId);
+        UserDto userDto = userService.loadUserByUsername(username);
+        log.error("查询的用户信息：" + userDto.toString());
         if (userDto == null) {
             throw new UsernameNotFoundException(MessageConstant.USERNAME_PASSWORD_ERROR);
         }
