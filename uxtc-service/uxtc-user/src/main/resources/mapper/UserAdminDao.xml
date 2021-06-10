@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uxtc.user.cloud.mapper.UserAdminDao">
-    <resultMap id="BaseResultMap" type="com.uxtc.user.cloud.entity.UmsMember">
-        <result column="id" property="id"/>
-        <result column="member_level_id" property="memberLevelId"/>
-        <result column="username" property="username"/>
-        <result column="password" property="password"/>
-        <result column="nickname" property="nickname"/>
-        <result column="phone" property="phone"/>
-        <result column="status" property="status"/>
-        <result column="create_time" property="createTime"/>
-        <result column="icon" property="icon"/>
-        <result column="gender" property="gender"/>
-        <result column="birthday" property="birthday"/>
-        <result column="city" property="city"/>
-        <result column="job" property="job"/>
-        <result column="personalized_signature" property="personalizedSignature"/>
-        <result column="source_type" property="sourceType"/>
-        <result column="integration" property="integration"/>
-        <result column="growth" property="growth"/>
-        <result column="luckey_count" property="luckeyCount"/>
-        <result column="history_integration" property="historyIntegration"/>
-    </resultMap>
-
-    <sql id="Base_Column_List">
-                id,
-                member_level_id,
-                username,
-                password,
-                nickname,
-                phone,
-                status,
-                create_time,
-                icon,
-                gender,
-                birthday,
-                city,
-                job,
-                personalized_signature,
-                source_type,
-                integration,
-                growth,
-                luckey_count,
-                history_integration
-    </sql>
-
-    <select id="getUserDetails" resultMap="BaseResultMap">
-        SELECT
-        <include refid="Base_Column_List"/>
-        FROM ums_member
-        WHERE member_level_id = #{userId}
-    </select>
-
     <insert id="addUmsMember" parameterType="com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo">
         INSERT INTO ums_member_statistics_info
         <trim prefix="(" suffix=")" suffixOverrides=",">

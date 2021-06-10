@@ -23,17 +23,6 @@ public class UserAdminController {
     @Autowired
     UserAdminService userAdminService;
 
-
-    @ApiOperation("根据用户ID查询当前的用户详情")
-    @RequestMapping(value = "/loadUserByUsername", method = RequestMethod.GET)
-    @ResponseBody
-    public UserDto loadUserByUsername(@RequestParam(value = "userId", defaultValue = "123456789012") Long userId) {
-        log.error("获取的参数：{}", userId);
-        UserDto userDto = userAdminService.loadUserByUsername(userId);
-        log.error("查询数据开始:{}", userDto.toString());
-        return userDto;
-    }
-
     @ApiOperation("插入会员统计信息列表")
     @RequestMapping(value = "/addUmsMember", method = RequestMethod.GET)
     @ResponseBody

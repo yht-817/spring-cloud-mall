@@ -9,7 +9,5 @@ import feign.Param;
  * 概要
  */
 public interface UserAdminService {
-    UserDto loadUserByUsername(Long userId);
-
     int addUmsMember();
 }

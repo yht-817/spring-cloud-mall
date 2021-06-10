@@ -12,16 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @FeignClient(value = "uxtc-user", fallback = IUserAdminFallback.class)
 public interface IUserAdminClient {
-
-    /**
-     * 查询用户详情
-     *
-     * @param userId 用户ID
-     * @return
-     */
-    @GetMapping("/user/loadUserByUsername")
-    UserDto loadUserByUsername(@RequestParam Long userId);
-
     @GetMapping("/user/addUmsMember")
     int addUmsMember();
 }

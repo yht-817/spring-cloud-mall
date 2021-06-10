@@ -10,13 +10,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class IUserAdminFallback implements IUserAdminClient {
-
-    @Override
-    public UserDto loadUserByUsername(Long userId) {
-        log.error("进行服务熔断了");
-        return null;
-    }
-
     @Override
     public int addUmsMember() {
         return 0;

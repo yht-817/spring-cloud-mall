@@ -24,18 +24,6 @@ public class UserAdminServiceImpl implements UserAdminService {
     private UserAdminDao userAdminDao;
 
     @Override
-    public UserDto loadUserByUsername(Long userId) {
-        UserDto userDto = new UserDto();
-        // 查询当前的用户信息和权限信息
-        UmsMember umsMember = userAdminDao.getUserDetails(userId);
-        userDto.setId(umsMember.getMemberLevelId());
-        userDto.setUsername(umsMember.getUsername());
-        userDto.setPassword(umsMember.getPassword());
-        userDto.setStatus(umsMember.getStatus());
-        return userDto;
-    }
-
-    @Override
     public int addUmsMember() {
         UmsMemberStatisticsInfo umsMemberStatisticsInfo = new UmsMemberStatisticsInfo();
         umsMemberStatisticsInfo.setMemberId((long) Math.random());

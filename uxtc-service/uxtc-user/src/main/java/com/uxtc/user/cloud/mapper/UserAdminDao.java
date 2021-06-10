@@ -12,7 +12,5 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface UserAdminDao {
-    UmsMember getUserDetails(@Param("userId") Long userId);
-
     int addUmsMember(UmsMemberStatisticsInfo umsMemberStatisticsInfo);
 }
