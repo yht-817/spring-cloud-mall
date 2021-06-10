@@ -29,12 +29,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                 .antMatchers("/rsa/publicKey").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
     }
 
+    /**
+     * 如果不配置SpringBoot会自动配置一个AuthenticationManager,覆盖掉内存中的用户
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

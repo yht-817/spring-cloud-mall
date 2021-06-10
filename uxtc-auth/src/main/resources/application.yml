@@ -14,5 +14,5 @@ ribbon:
 
 logging:
   level:
-    org.springframework: error
+    org.springframework: info
     com.uxtc.auth.cloud: debug

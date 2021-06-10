@@ -31,7 +31,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: 'http://127.0.0.1:8411/uxtc-auth/rsa/publicKey' #配置RSA的公钥访问地址
+          jwk-set-uri: 'http://127.0.0.1:8411/uxtc-auth/rsa/publicKey' # 获取JWT验签公钥请求路径
 
   redis:
     host: 172.24.108.246 # Redis服务器地址
@@ -61,4 +61,4 @@ secure:
       - "/actuator/**"
       - "/uxtc-auth/oauth/token"
       - "/uxtc-auth/rsa/publicKey"
-      - "/uxtc-auth/getUserInfo/token"
+      - "/uxtc-auth/oauth/authorize"
