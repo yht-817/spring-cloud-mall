@@ -73,6 +73,9 @@ public class ResourceServerConfig {
         return http.build();
     }
 
+    /**
+     * 根据token然后去回去一些用户信息和角色
+     */
     @Bean
     public Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
