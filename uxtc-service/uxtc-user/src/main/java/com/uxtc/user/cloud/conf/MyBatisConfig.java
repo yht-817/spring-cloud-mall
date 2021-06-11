@@ -10,6 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.uxtc.user.cloud.mapper"})
+@MapperScan({"com.uxtc.user.cloud.dao"})
 public class MyBatisConfig {
 }

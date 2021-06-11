@@ -23,7 +23,7 @@ public class UserServiceDetailsImpl implements UserService {
     public UserDto loadUserByUsername(String userName) {
         // 查询当前用户的详情
         UserDto userDto = userServiceDao.loadUserByUsername(userName);
-        // 查询当前用户的权限
+        // 查询当前用户角色权限
         List<String> roles = userServiceDao.getRoles(userDto.getId());
         userDto.setRoles(roles);
         return userDto;

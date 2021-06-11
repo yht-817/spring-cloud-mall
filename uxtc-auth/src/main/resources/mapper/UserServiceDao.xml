@@ -12,13 +12,28 @@
         WHERE username = #{userName}
     </select>
 
-    <!--    查询用户权限-->
+    <!--    查询用户角色权限-->
     <select id="getRoles" resultType="java.lang.String">
         SELECT
-            a.url
+            b.role_id
         FROM
+            tb_user a
+            LEFT JOIN tb_user_role b ON a.id = b.user_id
+        WHERE
+            b.user_id  = #{id}
+    </select>
+
+    <!--    查询全部的权限列表-->
+    <select id="getRoleList" resultType="com.uxtc.auth.cloud.entity.RoleResources">
+         SELECT
+            a.url,
+            CONCAT( '[', GROUP_CONCAT( b.role_id ), ']' ) AS role_ids
+            FROM
             tb_permission a
             LEFT JOIN tb_role_permission b ON a.id = b.permission_id
-            LEFT JOIN tb_user_role c ON b.role_id = c.role_id WHERE c.user_id = #{id}
+            GROUP BY
+            a.url
     </select>
+
+
 </mapper>

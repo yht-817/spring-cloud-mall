@@ -12,7 +12,9 @@ import java.util.Map;
 
 /**
  * JWT内容增强器
- * Created by macro on 2020/6/19.
+ *
+ * @author 鱼仔
+ * @date 2020/6/19
  */
 @Component
 public class JwtTokenEnhancer implements TokenEnhancer {
@@ -22,9 +24,7 @@ public class JwtTokenEnhancer implements TokenEnhancer {
         Map<String, Object> info = new HashMap<>();
         //把用户ID设置到JWT中
         info.put("id", securityUser.getId());
-        info.put("username", securityUser.getUsername());
         info.put("client_id", securityUser.getClientId());
-        info.put("authorities", securityUser.getAuthorities());
         ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
         return accessToken;
     }

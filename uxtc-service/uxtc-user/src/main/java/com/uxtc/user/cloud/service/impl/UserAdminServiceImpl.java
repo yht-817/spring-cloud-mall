@@ -1,15 +1,19 @@
 package com.uxtc.user.cloud.service.impl;
 
-import com.uxtc.common.cloud.entity.UserDto;
-import com.uxtc.user.cloud.entity.UmsMember;
+import cn.hutool.core.util.IdUtil;
+import com.uxtc.user.cloud.entity.OauthClientDetails;
 import com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo;
+import com.uxtc.user.cloud.in.OauthClientDetailIn;
 import com.uxtc.user.cloud.service.UserAdminService;
-import com.uxtc.user.cloud.mapper.UserAdminDao;
+import com.uxtc.user.cloud.dao.UserAdminDao;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 鱼仔
@@ -20,7 +24,7 @@ import java.util.Date;
 @Slf4j
 public class UserAdminServiceImpl implements UserAdminService {
 
-    @Autowired
+    @Resource
     private UserAdminDao userAdminDao;
 
     @Override

@@ -1,9 +1,12 @@
-package com.uxtc.user.cloud.mapper;
+package com.uxtc.user.cloud.dao;
 
+import com.uxtc.user.cloud.entity.OauthClientDetails;
 import com.uxtc.user.cloud.entity.UmsMember;
 import com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 鱼仔
@@ -13,4 +16,6 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserAdminDao {
     int addUmsMember(UmsMemberStatisticsInfo umsMemberStatisticsInfo);
+
+    List<OauthClientDetails> queryClientList();
 }

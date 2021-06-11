@@ -1,13 +1,17 @@
 package com.uxtc.user.cloud.controller;
 
-import com.uxtc.common.cloud.entity.UserDto;
+import com.uxtc.common.cloud.api.CommonResult;
+import com.uxtc.user.cloud.entity.OauthClientDetails;
+import com.uxtc.user.cloud.in.OauthClientDetailIn;
 import com.uxtc.user.cloud.service.UserAdminService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author 鱼仔
@@ -15,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
  * 概要
  */
 @Controller
-@Api(tags = "UserAdminController 用户体系")
-@RequestMapping("/user")
+@Api(tags = "UserAdminController")
+@RequestMapping("/client")
 @Slf4j
 public class UserAdminController {
 
-    @Autowired
+    @Resource
     UserAdminService userAdminService;
 
     @ApiOperation("插入会员统计信息列表")

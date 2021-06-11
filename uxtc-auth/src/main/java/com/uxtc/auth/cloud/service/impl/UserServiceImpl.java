@@ -3,7 +3,6 @@ package com.uxtc.auth.cloud.service.impl;
 import com.uxtc.auth.cloud.constant.MessageConstant;
 import com.uxtc.auth.cloud.domain.SecurityUser;
 import com.uxtc.auth.cloud.service.UserService;
-import com.uxtc.common.cloud.constant.AuthConstant;
 import com.uxtc.common.cloud.entity.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

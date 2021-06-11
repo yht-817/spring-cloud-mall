@@ -5,7 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.nimbusds.jose.JWSObject;
 import com.uxtc.common.cloud.constant.AuthConstant;
-import com.uxtc.common.cloud.entity.UserDto;
+import com.uxtc.common.cloud.entity.UserRoleDao;
 import com.uxtc.gateway.cloud.config.IgnoreUrlsConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private IgnoreUrlsConfig ignoreUrlsConfig;
@@ -49,42 +49,43 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         ServerHttpRequest request = authorizationContext.getExchange().getRequest();
         URI uri = request.getURI();
         PathMatcher pathMatcher = new AntPathMatcher();
-        //白名单路径直接放行不进行鉴权处理
+        // 1.白名单路径直接放行不进行鉴权处理
         List<String> ignoreUrls = ignoreUrlsConfig.getUrls();
         for (String ignoreUrl : ignoreUrls) {
             if (pathMatcher.match(ignoreUrl, uri.getPath())) {
                 return Mono.just(new AuthorizationDecision(true));
             }
         }
-        //对应跨域的预检请求直接放行
+
+        // 2.对应跨域的预检请求直接放行
         if (request.getMethod() == HttpMethod.OPTIONS) {
             return Mono.just(new AuthorizationDecision(true));
         }
-        /**
-         * 根据不同的client_id的系统鉴别不同的权限放行，不同用户体系登录不允许互相访问
-         */
-        log.error("获取的路径数据" + uri.getPath());
-        if (!pathMatcher.match(AuthConstant.ADMIN_URL_PATTERN, uri.getPath())) {
-            log.error("不是管理端");
-            return Mono.just(new AuthorizationDecision(true));
+
+        // 3. token为空拒绝访问
+        String token = request.getHeaders().getFirst(AuthConstant.JWT_TOKEN_HEADER);
+        if (StrUtil.isBlank(token)) {
+            return Mono.just(new AuthorizationDecision(false));
         }
-        log.error("应该不得走这里了");
-        //管理端路径需校验权限
-        Map<Object, Object> resourceRolesMap = stringRedisTemplate.opsForHash().entries(AuthConstant.RESOURCE_ROLES_MAP_KEY);
+
+        // 4.管理端路径需校验权限
+        Map<Object, Object> resourceRolesMap = redisTemplate.opsForHash().entries(AuthConstant.RESOURCE_ROLES_MAP_KEY);
+        log.error("redis的数据：{}", resourceRolesMap.toString());
         Iterator<Object> iterator = resourceRolesMap.keySet().iterator();
         List<String> authorities = new ArrayList<>();
         while (iterator.hasNext()) {
             String pattern = (String) iterator.next();
+            log.error("获取的url：" + uri.getPath());
             if (pathMatcher.match(pattern, uri.getPath())) {
                 authorities.addAll(Convert.toList(String.class, resourceRolesMap.get(pattern)));
             }
         }
-        authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
-        //认证通过且角色匹配的用户可访问当前路径
+        log.error("查询的url：{}", authorities.toString());
         return mono
                 .filter(Authentication::isAuthenticated)
                 .flatMapIterable(Authentication::getAuthorities)
                 .map(GrantedAuthority::getAuthority)
+                // 这个是用户的角色和全部的角色进行比对，true就放开，false就进行拦截
                 .any(authorities::contains)
                 .map(AuthorizationDecision::new)
                 .defaultIfEmpty(new AuthorizationDecision(false));
