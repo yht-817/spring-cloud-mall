@@ -13,6 +13,16 @@ ribbon:
   ConnectTimeout: 3000 #服务请求连接超时时间（毫秒）
   ReadTimeout: 3000 #服务请求处理超时时间（毫秒）
 
+#这是mybatis-plus的配置
+mybatis-plus:
+  - config-location: classpath:mybatis/mybatis-config.xml
+  - mapper-locations: classpath:mapper/*.xml
+
+#这个是mybatis的配置
+#mybatis:
+#  mapper-locations:
+#    - classpath:dao/*.xml
+
 logging:
   level:
     org.springframework: warn

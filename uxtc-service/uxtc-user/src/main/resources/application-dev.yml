@@ -1,12 +1,22 @@
 spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 172.24.108.245:8848
   datasource:
     url: jdbc:mysql://localhost:3306/uxtc_mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 1234567890
+    druid:
+      initial-size: 5 #连接池初始化大小
+      min-idle: 10 #最小空闲连接数
+      max-active: 20 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid
+  #注册中心
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 172.24.108.245:8848
 
   redis:
     host: 172.24.108.246 # Redis服务器地址
@@ -20,6 +30,8 @@ spring:
   sleuth:
     sampler:
       probability: 0.1 #设置Sleuth的抽样收集概率
+    feign:
+      enabled: true #启动链路追踪（默认为true）
 
 seata:
   # 该属性需要与前面config.txt文件中的service.vgroupMapping后的值保持一致
@@ -35,14 +47,4 @@ seata:
       serverAddr: 172.24.108.245:8848
       group: SEATA_GROUP # 分组需和seate分组一致
       namespace: 09117bf2-f71a-43c5-9a2a-9103882154e0
-
-#这是mybatis-plus的配置
-mybatis-plus:
-  - config-location: classpath:mybatis/mybatis-config.xml
-  - mapper-locations: classpath:mapper/*.xml
-#这个是mybatis的配置
-#mybatis:
-#  mapper-locations:
-#    - classpath:dao/*.xml
-
 

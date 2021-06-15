@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Controller
 @Api(tags = "UserAdminController")
-@RequestMapping("/client")
+@RequestMapping("/user")
 @Slf4j
 public class UserAdminController {
 

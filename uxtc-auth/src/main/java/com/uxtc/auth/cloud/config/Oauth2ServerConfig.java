@@ -3,9 +3,12 @@ package com.uxtc.auth.cloud.config;
 import com.uxtc.auth.cloud.component.JwtTokenEnhancer;
 import com.uxtc.auth.cloud.service.impl.UserServiceImpl;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -19,6 +22,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
@@ -29,7 +33,9 @@ import java.util.List;
 /**
  * 认证服务器配置
  * <p>
- * Created by 鱼仔 on 2020/6/19.
+ *
+ * @author 鱼仔
+ * @date 2020/6/19
  */
 @AllArgsConstructor
 @Configuration
@@ -48,6 +54,11 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
      */
     private DataSource dataSource;
 
+    /**
+     * redis的数据源
+     */
+    private RedisConnectionFactory connectionFactory;
+
     @Bean
     public ClientDetailsService clientDetails() {
         // 基于 JDBC 实现，需要事先在数据库配置客户端信息，从数据库读取客户端配置信息
@@ -55,10 +66,17 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     @Bean
-    public TokenStore tokenStore() {
+    public TokenStore jdbcTokenStore() {
         // 基于 JDBC 实现，令牌保存到数据
         return new JdbcTokenStore(dataSource);
     }
+
+    @Bean
+    public TokenStore redisTokenStore() {
+        // 基于 redis 实现，令牌保存到数据
+        return new RedisTokenStore(connectionFactory);
+    }
+
 
     /**
      * 客户端信息配置
@@ -96,7 +114,8 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
                 .accessTokenConverter(accessTokenConverter())
                 .tokenEnhancer(enhancerChain)
                 // 把用户token数据保存到数据库
-                .tokenStore(tokenStore());
+                // redis或者数据库
+                .tokenStore(jdbcTokenStore());
          /*refresh_token有两种使用方式：重复使用(true)、非重复使用(false)，默认为true
               1.重复使用：access_token过期刷新时， refresh token过期时间未改变，仍以初次生成的时间为准
               2.非重复使用：access_token过期刷新时， refresh_token过期时间延续，在refresh_token有效期内刷新而无需失效再次登录
