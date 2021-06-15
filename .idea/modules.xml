@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/spring-cloud-mall.iml" filepath="$PROJECT_DIR$/spring-cloud-mall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-mall.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-mall.iml" />
       <module fileurl="file://$PROJECT_DIR$/uxtc-service/uxtc-admin/uxtc-admin.iml" filepath="$PROJECT_DIR$/uxtc-service/uxtc-admin/uxtc-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/uxtc-auth/uxtc-auth.iml" filepath="$PROJECT_DIR$/uxtc-auth/uxtc-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/uxtc-common/uxtc-common.iml" filepath="$PROJECT_DIR$/uxtc-common/uxtc-common.iml" />
