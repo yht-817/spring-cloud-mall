@@ -31,6 +31,9 @@ spring:
     sampler:
       probability: 0.1 #设置Sleuth的抽样收集概率
 
+  main:
+    allow-bean-definition-overriding: true
+
 seata:
   # 该属性需要与前面config.txt文件中的service.vgroupMapping后的值保持一致
   tx-service-group: my_test_tx_group

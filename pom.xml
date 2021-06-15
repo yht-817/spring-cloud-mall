@@ -171,6 +171,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.uxtc.cloud</groupId>
+                <artifactId>uxtc-order-feign-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>

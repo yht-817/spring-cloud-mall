@@ -13,5 +13,5 @@ import java.util.List;
  * 概要
  */
 public interface UserAdminService {
-    int addUmsMember();
+    String addUmsMember();
 }

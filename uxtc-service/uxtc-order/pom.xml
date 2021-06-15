@@ -51,7 +51,7 @@
         </dependency>
         <dependency>
             <groupId>com.uxtc.cloud</groupId>
-            <artifactId>uxtc-user-feign-api</artifactId>
+            <artifactId>uxtc-order-feign-api</artifactId>
         </dependency>
         <!--集成分布式事务的-->
         <dependency>

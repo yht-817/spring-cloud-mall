@@ -30,8 +30,8 @@ public class UserAdminController {
     @ApiOperation("插入会员统计信息列表")
     @RequestMapping(value = "/addUmsMember", method = RequestMethod.GET)
     @ResponseBody
-    public int addUmsMember() {
-        int add = userAdminService.addUmsMember();
+    public String addUmsMember() {
+        String add = userAdminService.addUmsMember();
         return add;
     }
 }

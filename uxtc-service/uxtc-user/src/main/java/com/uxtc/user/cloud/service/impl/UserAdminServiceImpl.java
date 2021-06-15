@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -28,11 +29,17 @@ public class UserAdminServiceImpl implements UserAdminService {
     private UserAdminDao userAdminDao;
 
     @Override
-    public int addUmsMember() {
+    @Transactional
+    public String addUmsMember() {
         UmsMemberStatisticsInfo umsMemberStatisticsInfo = new UmsMemberStatisticsInfo();
         umsMemberStatisticsInfo.setMemberId((long) Math.random());
         umsMemberStatisticsInfo.setAttendCount(100);
         umsMemberStatisticsInfo.setRecentOrderTime(new Date());
-        return userAdminDao.addUmsMember(umsMemberStatisticsInfo);
+        int addUmsMember = userAdminDao.addUmsMember(umsMemberStatisticsInfo);
+        int a = 100 / 0;
+        if (addUmsMember > 0) {
+            return "成功";
+        }
+        return "失败";
     }
 }

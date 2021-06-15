@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 /**
  * @author 鱼仔
  * @date 2021/6/7 3:53 下午
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class OrderController {
 
-    @Autowired
+    @Resource
     OrderService orderService;
 
     /**
