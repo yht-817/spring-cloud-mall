@@ -2,7 +2,7 @@ package com.uxtc.gateway.cloud.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.nimbusds.jose.JWSObject;
-import com.uxtc.common.cloud.constant.AuthConstant;
+import com.uxtc.cloud.common.constant.AuthConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

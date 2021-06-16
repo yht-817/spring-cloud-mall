@@ -1,7 +1,7 @@
 package com.uxtc.gateway.cloud.component;
 
 import cn.hutool.json.JSONUtil;
-import com.uxtc.common.cloud.api.CommonResult;
+import com.uxtc.cloud.common.api.CommonResult;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.uxtc.gateway.cloud.filter;
 
-import com.uxtc.common.cloud.constant.AuthConstant;
+import com.uxtc.cloud.common.constant.AuthConstant;
 import com.uxtc.gateway.cloud.config.IgnoreUrlsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.server.reactive.ServerHttpRequest;

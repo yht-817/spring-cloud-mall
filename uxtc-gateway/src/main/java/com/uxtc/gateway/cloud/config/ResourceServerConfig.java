@@ -1,7 +1,7 @@
 package com.uxtc.gateway.cloud.config;
 
 import cn.hutool.core.util.ArrayUtil;
-import com.uxtc.common.cloud.constant.AuthConstant;
+import com.uxtc.cloud.common.constant.AuthConstant;
 import com.uxtc.gateway.cloud.authorization.AuthorizationManager;
 import com.uxtc.gateway.cloud.component.RestAuthenticationEntryPoint;
 import com.uxtc.gateway.cloud.component.RestfulAccessDeniedHandler;

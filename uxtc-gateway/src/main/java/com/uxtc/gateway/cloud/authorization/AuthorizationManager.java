@@ -2,15 +2,11 @@ package com.uxtc.gateway.cloud.authorization;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
-import com.nimbusds.jose.JWSObject;
-import com.uxtc.common.cloud.constant.AuthConstant;
-import com.uxtc.common.cloud.entity.UserRoleDao;
+import com.uxtc.cloud.common.constant.AuthConstant;
 import com.uxtc.gateway.cloud.config.IgnoreUrlsConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authorization.AuthorizationDecision;
@@ -24,12 +20,10 @@ import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.uxtc.user.cloud.dao.UserAdminDao">
-    <insert id="addUmsMember" parameterType="com.uxtc.user.cloud.entity.UmsMemberStatisticsInfo">
+<mapper namespace="com.uxtc.cloud.dao.UserAdminDao">
+    <insert id="addUmsMember" parameterType="com.uxtc.cloud.entity.UmsMemberStatisticsInfo">
         INSERT INTO ums_member_statistics_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="null != memberId and '' != memberId">

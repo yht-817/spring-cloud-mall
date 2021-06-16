@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.uxtc.user.cloud.dao.OauthClientDetailsDao">
+<mapper namespace="com.uxtc.cloud.dao.OauthClientDetailsDao">
 
-    <resultMap id="BaseResultMap" type="com.uxtc.user.cloud.entity.OauthClientDetails">
+    <resultMap id="BaseResultMap" type="com.uxtc.cloud.entity.OauthClientDetails">
         <!--@Table oauth_client_details-->
         <result property="clientId" column="client_id" jdbcType="VARCHAR"/>
         <result property="resourceIds" column="resource_ids" jdbcType="VARCHAR"/>
