@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * 概要
  */
 
-@EnableFeignClients(basePackages = "com.uxtc")
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 public class SpringCloudUxtcAuthApplication {

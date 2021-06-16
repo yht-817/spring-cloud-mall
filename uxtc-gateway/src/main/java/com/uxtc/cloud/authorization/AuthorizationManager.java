@@ -1,11 +1,10 @@
-package com.uxtc.gateway.cloud.authorization;
+package com.uxtc.cloud.authorization;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import com.uxtc.cloud.common.constant.AuthConstant;
-import com.uxtc.gateway.cloud.config.IgnoreUrlsConfig;
+import com.uxtc.cloud.config.IgnoreUrlsConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -19,6 +18,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,15 +27,17 @@ import java.util.Map;
 
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限
- * Created by 鱼仔 on 2020/6/19.
+ *
+ * @author 鱼仔
+ * @date 2020/6/19
  */
 @Component
 @Slf4j
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
-    @Autowired
+    @Resource
     private RedisTemplate redisTemplate;
 
-    @Autowired
+    @Resource
     private IgnoreUrlsConfig ignoreUrlsConfig;
 
     @Override
@@ -69,7 +71,6 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         List<String> authorities = new ArrayList<>();
         while (iterator.hasNext()) {
             String pattern = (String) iterator.next();
-            log.error("获取的url：" + uri.getPath());
             if (pathMatcher.match(pattern, uri.getPath())) {
                 authorities.addAll(Convert.toList(String.class, resourceRolesMap.get(pattern)));
             }

@@ -30,12 +30,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @GlobalTransactional
     public int insert() {
-        String addUmsMember = iUserAdminClient.addUmsMember();
-        log.error("熔断返回的参数:" + addUmsMember);
+        String aa = null;
+        System.out.println(aa.toString());
+
+//        String addUmsMember = iUserAdminClient.addUmsMember();
+//        log.error("熔断返回的参数:" + addUmsMember);
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setOrderNo(IdUtil.randomUUID());
         orderInfo.setCreateTime(new Date());
         int add = orderDao.insert(orderInfo);
+        int a = 100 / 0;
         return add;
     }
 }

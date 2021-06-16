@@ -1,4 +1,4 @@
-package com.uxtc.gateway.cloud.config;
+package com.uxtc.cloud.config;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.uxtc.gateway.cloud.handler;
+package com.uxtc.cloud.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

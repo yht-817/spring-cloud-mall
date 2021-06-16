@@ -1,4 +1,4 @@
-package com.uxtc.gateway.cloud.config;
+package com.uxtc.cloud.config;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

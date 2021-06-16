@@ -1,4 +1,4 @@
-package com.uxtc.gateway.cloud.filter;
+package com.uxtc.cloud.filter;
 
 import cn.hutool.core.util.StrUtil;
 import com.nimbusds.jose.JWSObject;

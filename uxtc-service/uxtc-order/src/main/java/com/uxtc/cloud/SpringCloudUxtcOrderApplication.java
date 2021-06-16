@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date 2021/4/20 10:38 上午
  * 概要
  */
-@EnableFeignClients(basePackages = "com.uxtc")
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableAutoDataSourceProxy

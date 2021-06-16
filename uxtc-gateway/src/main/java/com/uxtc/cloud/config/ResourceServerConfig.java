@@ -1,11 +1,11 @@
-package com.uxtc.gateway.cloud.config;
+package com.uxtc.cloud.config;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.uxtc.cloud.common.constant.AuthConstant;
-import com.uxtc.gateway.cloud.authorization.AuthorizationManager;
-import com.uxtc.gateway.cloud.component.RestAuthenticationEntryPoint;
-import com.uxtc.gateway.cloud.component.RestfulAccessDeniedHandler;
-import com.uxtc.gateway.cloud.filter.IgnoreUrlsRemoveJwtFilter;
+import com.uxtc.cloud.component.RestAuthenticationEntryPoint;
+import com.uxtc.cloud.authorization.AuthorizationManager;
+import com.uxtc.cloud.component.RestfulAccessDeniedHandler;
+import com.uxtc.cloud.filter.IgnoreUrlsRemoveJwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

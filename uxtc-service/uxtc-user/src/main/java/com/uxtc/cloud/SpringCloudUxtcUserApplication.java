@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @EnableDiscoveryClient 把微服务注册到注册中心
  * @EnableFeignClients 对远程调度接口进行注入
  */
-@EnableFeignClients(basePackages = "com.uxtc")
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableAutoDataSourceProxy
