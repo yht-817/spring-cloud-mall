@@ -14,5 +14,5 @@ ribbon:
 
 logging:
   level:
-    org.springframework: warn
-    com.uxtc.auth.cloud: debug
+    org.springframework: info
+    com.uxtc.cloud: debug

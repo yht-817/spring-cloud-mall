@@ -22,4 +22,4 @@ mybatis-plus:
 logging:
   level:
     org.springframework: info
-    com.uxtc.auth.cloud: debug
+    com.uxtc.cloud: debug

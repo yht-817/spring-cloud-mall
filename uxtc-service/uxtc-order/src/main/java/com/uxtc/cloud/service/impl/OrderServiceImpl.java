@@ -30,8 +30,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @GlobalTransactional
     public int insert() {
-        String aa = null;
-        System.out.println(aa.toString());
 
 //        String addUmsMember = iUserAdminClient.addUmsMember();
 //        log.error("熔断返回的参数:" + addUmsMember);

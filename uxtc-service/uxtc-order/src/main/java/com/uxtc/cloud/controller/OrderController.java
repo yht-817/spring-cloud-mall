@@ -32,6 +32,8 @@ public class OrderController {
     @RequestMapping(value = "/insertOrder", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<Object> insertOrder() {
+        String aa = null;
+        System.out.println(aa.toString());
         int add = orderService.insert();
         if (add > 0) {
             return CommonResult.success("");

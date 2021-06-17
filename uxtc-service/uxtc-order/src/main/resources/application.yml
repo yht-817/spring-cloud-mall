@@ -28,4 +28,4 @@ mybatis-plus:
 logging:
   level:
     org.springframework: warn
-    com.uxtc.auth.cloud: debug
+    com.uxtc.cloud: debug
