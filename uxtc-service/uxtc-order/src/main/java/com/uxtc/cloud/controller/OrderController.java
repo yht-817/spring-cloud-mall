@@ -28,12 +28,11 @@ public class OrderController {
     /**
      * 进行订单下单
      */
+
     @ApiOperation("进行订单下单")
-    @RequestMapping(value = "/insertOrder", method = RequestMethod.GET)
     @ResponseBody
+    @RequestMapping(value = "/insertOrder", method = RequestMethod.GET)
     public CommonResult<Object> insertOrder() {
-        String aa = null;
-        System.out.println(aa.toString());
         int add = orderService.insert();
         if (add > 0) {
             return CommonResult.success("");
