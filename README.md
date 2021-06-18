@@ -9,15 +9,5 @@ spring-cloud-mall 是用 **spring cloud 与spring cloud alibaba** 集成的微�
 
 #### 代码结构
 
-spring-cloud-mall
-├── uxtc-auth    -- 授权服务提供
-├── uxtc-common  -- 常用工具封装包
-├── uxtc-gateway -- Spring Cloud 网关
-├── uxtc-service 
-├    ├── uxtc-user  -- 用户服务模块
-├    ├── uxtc-order -- 订单服务模块
-├    ├── uxtc-admin -- 后台管理模块
-├── uxtc-service-feign-api    -- 业务模块api封装
-├    ├── uxtc-order-feign-api -- 订单api 
-└──  └── uxtc-order-feign-api -- 用户api 
+![代码结构](https://images.gitee.com/uploads/images/2021/0618/095201_7996127f_1393776.png "屏幕截图.png")
 
