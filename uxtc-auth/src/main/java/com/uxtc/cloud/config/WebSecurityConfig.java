@@ -1,5 +1,6 @@
 package com.uxtc.cloud.config;
 
+import com.uxtc.cloud.service.impl.AuthenticationProviderImpl;
 import com.uxtc.cloud.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserServiceImpl userDetailsService;
 
+    @Autowired
+    AuthenticationProviderImpl authenticationProvider;
+
     /**
      * @param http
      * @throws Exception
@@ -48,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        // auth.userDetailsService(userDetailsService);
+        auth.authenticationProvider(authenticationProvider);
     }
 
     /**

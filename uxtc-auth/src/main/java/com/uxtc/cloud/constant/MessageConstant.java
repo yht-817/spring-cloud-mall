@@ -2,7 +2,9 @@ package com.uxtc.cloud.constant;
 
 /**
  * 消息常量
- * Created by macro on 2020/6/19.
+ *
+ * @author 鱼仔
+ * @date 2020/6/19
  */
 public class MessageConstant {
 

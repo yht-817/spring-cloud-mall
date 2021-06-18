@@ -41,6 +41,7 @@ import java.util.List;
 public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private final UserServiceImpl userDetailsService;
+    // 认证提供者的
     private final AuthenticationManager authenticationManager;
     /**
      * 自定义jwt信息，配置里面自己想带的参数
