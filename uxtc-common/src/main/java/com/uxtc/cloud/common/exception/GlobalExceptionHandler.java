@@ -1,6 +1,7 @@
 package com.uxtc.cloud.common.exception;
 
 import com.uxtc.cloud.common.api.CommonResult;
+import com.uxtc.cloud.common.api.ResultCode;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -11,11 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 全局异常处理
- *
- * @author 鱼仔
- * @date 2020/2/27
+ * Created by macro on 2020/2/27.
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ResponseBody
@@ -28,23 +27,26 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseBody
+    @ExceptionHandler(value = RuntimeException.class)
+    public CommonResult handle(RuntimeException e) {
+        e.printStackTrace();
+        return CommonResult.failed(ResultCode.FAILED);
+    }
+
+    @ResponseBody
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public CommonResult handleValidException(MethodArgumentNotValidException e) {
-        BindingResult bindingResult = e.getBindingResult();
-        String message = null;
-        if (bindingResult.hasErrors()) {
-            FieldError fieldError = bindingResult.getFieldError();
-            if (fieldError != null) {
-                message = fieldError.getField() + fieldError.getDefaultMessage();
-            }
-        }
-        return CommonResult.validateFailed(message);
+        return getCommonResult(e.getBindingResult(), e);
     }
 
     @ResponseBody
     @ExceptionHandler(value = BindException.class)
     public CommonResult handleValidException(BindException e) {
-        BindingResult bindingResult = e.getBindingResult();
+        return getCommonResult(e.getBindingResult(), e);
+    }
+
+    private CommonResult getCommonResult(BindingResult bindingR, Exception e) {
+        BindingResult bindingResult = bindingR;
         String message = null;
         if (bindingResult.hasErrors()) {
             FieldError fieldError = bindingResult.getFieldError();
