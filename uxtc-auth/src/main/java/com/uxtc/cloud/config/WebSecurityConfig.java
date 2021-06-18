@@ -45,14 +45,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * oauth2的授权用户登陆查询用户信息，然后点击登陆
+     * 根据用户名进行用户信息查询然后验证用户信息
      *
      * @param auth
      * @throws Exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // auth.userDetailsService(userDetailsService);
+        /*auth.inMemoryAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .withUser("admin")
+                .password(new BCryptPasswordEncoder().encode("admin"))
+                .roles("admin");*/ // 基于内存模式，充当用户信息
+        /*auth.userDetailsService(userDetailsService);*/ // 基于jdbc模式，用用户名查询数据库模式
+        // 自定义异常，根据用户查询的详情然后判断，抛出自己的异常信息
         auth.authenticationProvider(authenticationProvider);
     }
 
